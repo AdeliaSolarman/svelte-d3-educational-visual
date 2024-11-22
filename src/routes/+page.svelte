@@ -5,5 +5,7 @@
 <main class="grow">
 	GRAPHS :0
 
-	<TempBarChart />
+	<div class="flex w-full items-center justify-center">
+		<TempBarChart />
+	</div>
 </main>
