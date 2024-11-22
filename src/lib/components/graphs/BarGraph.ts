@@ -7,17 +7,33 @@ type DataType = {
 
 export type BarGraphData = DataType[];
 
+type BarGraphConfig = {
+	margin?: { top: number; right: number; bottom: number; left: number };
+	width?: number;
+	height?: number;
+};
+
 export const BarGraph = function () {
-	const margin = { top: 20, right: 20, bottom: 30, left: 40 };
-	const width = 600 - margin.left - margin.right;
-	const height = 400 - margin.top - margin.bottom;
+	let margin = { top: 20, right: 20, bottom: 30, left: 40 };
+	let width = 600 - margin.left - margin.right;
+	let height = 400 - margin.top - margin.bottom;
 	const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeead'];
 
 	let svg: d3.Selection<SVGGElement, unknown, null, undefined>;
 	let x: d3.ScaleBand<string>;
 	let y: d3.ScaleLinear<number, number>;
 
-	const setupGraph = (selector: HTMLDivElement, graphData: BarGraphData) => {
+	const setupGraph = (
+		selector: HTMLDivElement,
+		graphData: BarGraphData,
+		config?: BarGraphConfig
+	) => {
+		if (config) {
+			margin = config.margin || margin;
+			width = config.width || width;
+			height = config.height || height;
+		}
+
 		d3.select(selector).selectAll('*').remove();
 
 		// root svg

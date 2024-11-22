@@ -8,4 +8,7 @@
 	<div class="flex w-full items-center justify-center">
 		<TempBarChart />
 	</div>
+
+	<a href="/graphs/bar">bar graph land</a>
+	<a href="/graphs/line">line graph land</a>
 </main>
