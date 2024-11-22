@@ -1,5 +1,5 @@
-<nav class="flex flex-row items-center justify-between p-8">
-	<div>
+<nav class="flex flex-row items-start justify-between p-8">
+	<div class="flex flex-col gap-4">
 		<h2 class="text-4xl font-bold">Graphing</h2>
 		<span class="font-light italic text-neutral-400">better name in progress...</span>
 	</div>
