@@ -24,12 +24,31 @@
 
 	const { setupGraph, updateGraph } = BarGraph();
 
+	// container size
+	let containerDiv: HTMLDivElement;
+	let width = $state(0);
+	let height = $state(0);
+
+	$inspect(width);
+
 	$effect(() => {
-		if (!hasSetup) {
-			setupGraph(chart, displayData);
-			hasSetup = true;
-		} else {
-			updateGraph(displayData);
+		if (containerDiv) {
+			width = containerDiv.clientWidth - 60;
+			height = width * 0.6 - 50;
+		}
+	});
+
+	$effect(() => {
+		if (width > 0 && height > 0) {
+			if (!hasSetup) {
+				setupGraph(chart, displayData, {
+					width,
+					height
+				});
+				hasSetup = true;
+			} else {
+				updateGraph(displayData);
+			}
 		}
 	});
 
@@ -42,4 +61,6 @@
 	});
 </script>
 
-<div bind:this={chart}></div>
+<div bind:this={containerDiv} class="h-full w-full">
+	<div bind:this={chart}></div>
+</div>
