@@ -2,4 +2,8 @@
 	import TempBarChart from '$lib/components/TempBarChart.svelte';
 </script>
 
-<TempBarChart />
+<div class="">
+	<TempBarChart />
+
+	<div>This is some testing text</div>
+</div>

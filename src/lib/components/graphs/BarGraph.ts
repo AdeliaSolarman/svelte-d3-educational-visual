@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 type DataType = {
 	name: string;
 	value: number;
+	color: string;
 };
 
 export type BarGraphData = DataType[];
@@ -17,7 +18,6 @@ export const BarGraph = function () {
 	let margin = { top: 20, right: 20, bottom: 30, left: 40 };
 	let width = 600 - margin.left - margin.right;
 	let height = 400 - margin.top - margin.bottom;
-	const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeead'];
 
 	let svg: d3.Selection<SVGGElement, unknown, null, undefined>;
 	let x: d3.ScaleBand<string>;
@@ -71,7 +71,7 @@ export const BarGraph = function () {
 
 		// colors
 		const defs = svg.append('defs');
-		colors.forEach((color, i) => {
+		graphData.forEach(({ color }, i) => {
 			const pattern = defs
 				.append('pattern')
 				.attr('id', `line-pattern-${i}`)
