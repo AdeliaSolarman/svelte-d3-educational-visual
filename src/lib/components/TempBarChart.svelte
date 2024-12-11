@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { color } from 'd3';
 	import { BarGraph, type BarGraphData } from './graphs/BarGraph';
+	import { browser } from '$app/environment';
 
 	const {
 		data = [
@@ -30,12 +30,16 @@
 	let width = $state(0);
 	let height = $state(0);
 
-	$inspect(width);
-
-	$effect(() => {
+	function updateDimensions() {
 		if (containerDiv) {
 			width = containerDiv.clientWidth - 60;
 			height = width * 0.6 - 50;
+		}
+	}
+
+	$effect(() => {
+		if (browser && containerDiv) {
+			updateDimensions();
 		}
 	});
 
