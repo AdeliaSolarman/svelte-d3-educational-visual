@@ -3,12 +3,12 @@
 </script>
 
 <main class=" grow">
-	GRAPHS :0
+	<!-- GRAPHS :0 -->
 
 	<div class="flex w-full items-center justify-center px-4">
 		<TempBarChart />
 	</div>
 
-	<a href="/graphs/bar">bar graph land</a>
-	<a href="/graphs/line">line graph land</a>
+	<!-- <a href="/graphs/bar">bar graph land</a>
+	<a href="/graphs/line">line graph land</a> -->
 </main>

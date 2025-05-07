@@ -2,30 +2,45 @@
 	import { BarGraph, type BarGraphData } from './graphs/BarGraph';
 	import { browser } from '$app/environment';
 
-	const {
-		data = [
-			{ name: 'A', value: 88, color: '#ff6b6b' },
-			{ name: 'B', value: 12, color: '#4ecdc4' },
-			{ name: 'C', value: 58, color: '#45b7d1' },
-			{ name: 'D', value: 39, color: '#ff0' },
-			{ name: 'E', value: 77, color: '#ffeead' }
-		]
-	}: { data?: BarGraphData } = $props();
+	const dataSets: { label: string; data: BarGraphData }[] = [
+		{
+			label: 'Primary Completion Rate',
+			data: [
+				{ name: 'Q1', value: 86.43, color: '#ff6b6b' },
+				{ name: 'Q2', value: 94.58, color: '#4ecdc4' },
+				{ name: 'Q3', value: 96.14, color: '#45b7d1'  },
+				{ name: 'Q4', value: 97.77, color: '#ffeead' }
+			]
+		},
+		{
+			label: 'Lower Secondary Completion Rate',
+			data: [
+				{ name: 'Q1', value: 57.69, color: '#ff6b6b' },
+				{ name: 'Q2', value: 74.73, color: '#4ecdc4' },
+				{ name: 'Q3', value: 82.47, color: '#45b7d1' },
+				{ name: 'Q4', value: 90.39, color: '#ffeead' }
+			]
+		},
+		{
+			label: 'Upper Secondary Completion Rate',
+			data: [
+				{ name: 'Q1', value: 27.95, color: '#ff6b6b' },
+				{ name: 'Q2', value: 46.13, color: '#4ecdc4' },
+				{ name: 'Q3', value: 57.59, color: '#45b7d1'  },
+				{ name: 'Q4', value: 68.10, color: '#ffeead' }
+			]
+		}
+	];
 
-	let displayData = $state(data);
-
-	const changeData = () => {
-		const newData = data.map((d) => ({ ...d, value: Math.random() * 100 }));
-		displayData = newData;
-	};
+	let displayData = $state(dataSets[0].data);
+	let currentSet = $state(0);
+	let title = $state(dataSets[0].label);
 
 	let chart: HTMLDivElement;
-
 	let hasSetup = false;
 
 	const { setupGraph, updateGraph } = BarGraph();
 
-	// container size
 	let containerDiv: HTMLDivElement;
 	let width = $state(0);
 	let height = $state(0);
@@ -59,13 +74,15 @@
 
 	$effect(() => {
 		const interval = setInterval(() => {
-			changeData();
-		}, 2000);
-
+			currentSet = (currentSet + 1) % dataSets.length;
+			displayData = dataSets[currentSet].data;
+			title = dataSets[currentSet].label;
+		}, 3000);
 		return () => clearInterval(interval);
 	});
 </script>
 
-<div bind:this={containerDiv} class="h-full w-full">
+<div bind:this={containerDiv} class="w-full max-w-screen-md px-4 mx-auto">
+	<h2 class="text-center text-lg font-semibold mb-2">{title}</h2>
 	<div bind:this={chart}></div>
 </div>
