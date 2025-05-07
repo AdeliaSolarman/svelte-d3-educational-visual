@@ -6,7 +6,7 @@
 
 	<div class="flex flex-row items-center gap-4">
 		<a
-			href="https://github.com/AdeliaSolarman"
+			href="https://github.com/AdeliaSolarman/svelte-d3-educational-visual"
 			target="_blank"
 			class="text-neutral-200 hover:underline">Repo</a
 		>
