@@ -17,12 +17,12 @@
 
 // export default config;
 
-import vercel from '@sveltejs/adapter-vercel';
+import adapter from '@sveltejs/adapter-vercel';
 
 export default {
   kit: {
-    adapter: vercel({
-      runtime: 'nodejs18.x'  
+    adapter: adapter({
+      runtime: 'nodejs18.x' // 👈 explicitly set runtime version
     })
   }
 };
