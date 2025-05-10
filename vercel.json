@@ -1,7 +1,18 @@
 {
-    "build": {
-      "env": {
-        "NODE_VERSION": "18"
-      }
+  "build": {
+    "env": {
+      "NODE_VERSION": "18"
+    }
+  },
+  "functions": {
+    "api/**.js": {
+      "runtime": "nodejs18.x"
+    },
+    "graphs/**.js": {
+      "runtime": "nodejs18.x"
+    },
+    "index.js": {
+      "runtime": "nodejs18.x"
     }
   }
+}
